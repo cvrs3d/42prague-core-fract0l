@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:03:57 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 15:28:04 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 16:15:56 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,11 @@ typedef struct s_fractal
 # define WIDTH 800
 # define HEIGHT 800
 
-int		ft_strncmp(char *s1, char *s2, int n);
-void	putstr_fd(char *s, int fd);
-void	fractal_init(t_fractal *fractal);
+int			ft_strncmp(char *s1, char *s2, int n);
+void		putstr_fd(char *s, int fd);
+void		fractal_init(t_fractal *fractal);
+double		scale(double unscaled_num, double new_min, double new_max);
+t_complex	square_complex(t_complex z);
+t_complex	sum_complex(t_complex z1, t_complex z2);
 
 #endif

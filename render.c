@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:24:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 14:41:15 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:36:14 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,22 @@
 
 void	handle_pixel(int x, int y, t_fractal *fractal)
 {
+	t_complex	z;
+	t_complex	c;
 
+	z.x = 0.0;
+	z.y = 0.0;
+	c.x = scale(x, -2, +2);
+	c.y = scale(y, +2, -2);
+	while ()
+	{
+		z = sum_complex(square_complex(z), c);
+		if ()
+		{
+			my_pixel_put();
+			return ;
+		}
+	}
 }
 
 /*

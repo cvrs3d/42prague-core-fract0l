@@ -6,15 +6,46 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:52:24 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 15:24:53 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 16:14:18 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
+/*
+* Function that scales the unscaled_num
+* from the range 0 to WIDTH = 800
+* to the new range from new_min to new_max
+*/
 double	scale(double unscaled_num, double new_min, double new_max)
 {
-	return ((new_max - new_min) * (unscaled_num - 0) / (800 - 0) + new_min);
+	return ((new_max - new_min) * (unscaled_num - 0) / (WIDTH - 0) + new_min);
+}
+
+/*
+* Function that sums two complex numbers
+*/
+t_complex	sum_complex(t_complex z1, t_complex z2)
+{
+	t_complex	result;
+
+	result.x = z1.x + z2.x;
+	result.y = z1.y + z2.y;
+	return (result);
+}
+
+/*
+* Function that squares the complex number
+* using the formula (a + bi)^2 = a^2 - b^2 + 2abi
+* where a is the real part and b is the imaginary part
+* resluting in a new complex number
+*/
+t_complex	square_complex(t_complex z)
+{
+	t_complex	result;
+
+	result.x = (z.x * z.x) - (z.y * z.y);
+	result.y = 2 * z.x * z.y;
+	return (result);
 }
 /*
 *	Test:
