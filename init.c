@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:52:08 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 14:29:55 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 16:28:22 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ static void	graceful_backoff(void)
 {
 	perror("Malloc problems");
 	exit(EXIT_FAILURE);
+}
+
+void	data_init(t_fractal *fractal)
+{
+	fractal->escape_val = 4;
+	fractal->max_iter = 42;
 }
 
 /*
@@ -53,4 +59,5 @@ void	fractal_init(t_fractal *fractal)
 	}
 	fractal->img.pixels_pointer = mlx_get_data_addr(fractal->img.img_pointer,
 			&fractal->img.bpp, &fractal->img.line_len, &fractal->img.endian);
+	data_init(fractal);
 }

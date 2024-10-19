@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:03:57 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 16:15:56 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 16:57:56 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,25 @@ typedef struct s_fractal
 	void	*mlx_connection;
 	void	*mlx_window;
 	t_img	img;
+	double	escape_val;
+	int		max_iter;
 }				t_fractal;
 
 # define WIDTH 800
 # define HEIGHT 800
+# define BLACK 0x000000  // RGB(0, 0, 0)
+# define WHITE 0xFFFFFF  // RGB(255, 255, 255)
+# define RED 0xFF0000  // RGB(255, 0, 0)
+# define GREEN 0x00FF00  // RGB(0, 255, 0)
+# define BLUE 0x0000FF  // RGB(0, 0, 255)
+# define MAGENTA_BURST 0xFF00FF  // A vibrant magenta
+# define LIME_SHOCK 0xCCFF00  // A blinding lime
+# define NEON_ORANGE 0xFF6600  // A blazing neon orange
+# define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
+# define AQUA_DREAM 0x33CCCC  // A bright turquoise
+# define HOT_PINK 0xFF66B2  // As the name suggests!
+# define ELECTRIC_BLUE 0x0066FF  // A radiant blue
+# define LAVA_RED 0xFF3300  // A bright, molten red
 
 int			ft_strncmp(char *s1, char *s2, int n);
 void		putstr_fd(char *s, int fd);
