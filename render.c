@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:24:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 19:29:02 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 19:46:08 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 		z = sum_complex(square_complex(z), c);
 		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_val)
 		{
-			color = compute_color(i, ELECTRIC_BLUE, YELLOW, fractal->max_iter);
+			color = compute_color(i, E_B, L_R, fractal->max_iter);
 			my_pixel_put(x, y, &fractal->img, color);
 			return ;
 		}
@@ -86,3 +86,6 @@ void	fractal_render(t_fractal *fractal)
 	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,
 		fractal->img.img_pointer, 0, 0);
 }
+
+//TODO:
+// Separate the rendering for mandelbrot and julia

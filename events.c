@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:45:28 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 19:07:44 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 19:38:09 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,22 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 		fractal->zoom *= 1.05;
 	}
 	fractal_render(fractal);
+	return (0);
+}
+
+/*
+* Function prototyped like this
+* int (f*)(int x, int y, void* param);
+*/
+int	mouse_track(int x, int y, t_fractal *fractal)
+{
+	if (ft_strncmp(fractal->name, "julia", 5) == 0)
+	{
+		fractal->julia_x = scale(x, -2, +2) * fractal->zoom
+			+ fractal->shift_x;
+		fractal->julia_y = scale(y, +2, -2) * fractal->zoom
+			+ fractal->shift_y;
+		fractal_render(fractal);
+	}
 	return (0);
 }
