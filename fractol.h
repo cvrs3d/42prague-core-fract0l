@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:03:57 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 18:32:48 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 19:28:47 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ typedef struct s_fractal
 	double	shift_x;
 	double	shift_y;
 	double	zoom;
+	double	julia_x;
+	double	julia_y;
 }				t_fractal;
 
 # define WIDTH 800
@@ -86,15 +88,18 @@ typedef struct s_fractal
 # define HOT_PINK 0xFF66B2  // As the name suggests!
 # define ELECTRIC_BLUE 0x0066FF  // A radiant blue
 # define LAVA_RED 0xFF3300  // A bright, molten red
+# define YELLOW 0xFFFF00  // RGB(255, 255, 0)
 
 int			ft_strncmp(char *s1, char *s2, int n);
 void		putstr_fd(char *s, int fd);
 void		fractal_init(t_fractal *fractal);
 void		fractal_render(t_fractal *fractal);
 double		scale(double unscaled_num, double new_min, double new_max);
+double		atodbl(char *s);
 t_complex	square_complex(t_complex z);
 t_complex	sum_complex(t_complex z1, t_complex z2);
-int			compute_color(int unscaled_num, int new_min, int new_max, int max_i);
+int			compute_color(int unscaled_num, int new_min,
+				int new_max, int max_i);
 int			close_handler(t_fractal *fractal);
 int			key_handler(int keysym, t_fractal *fractal);
 int			mouse_handler(int button, int x, int y, t_fractal *fractal);

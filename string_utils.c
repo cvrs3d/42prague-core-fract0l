@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:12:25 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 19:07:07 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 19:11:37 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	putstr_fd(char *s, int fd)
 	}
 }
 
-int	chsign(char **c)
+static int	chsign(char **c)
 {
 	if (**c == '-')
 	{

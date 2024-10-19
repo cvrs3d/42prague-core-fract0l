@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 12:52:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 14:23:39 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 19:13:51 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(int acount, char **avalues)
 		|| 4 == acount && !ft_strncmp(avalues[1], "julia", 5))
 	{
 		fract.name = avalues[1];
+		fract.julia_x = atodbl(avalues[2]);
+		fract.julia_y = atodbl(avalues[3]);
 		fractal_init(&fract);
 		fractal_render(&fract);
 		mlx_loop(fract.mlx_connection);

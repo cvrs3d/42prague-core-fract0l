@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:24:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 18:35:34 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 19:29:02 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,20 @@ static void	my_pixel_put(int x, int y, t_img *img, int color)
 	*(unsigned int *)(img->pixels_pointer + offset) = color;
 }
 
+static void	toggle_fractal(t_complex *z, t_complex *c, t_fractal *fractal)
+{
+	if (ft_strncmp(fractal->name, "julia", 5) == 0)
+	{
+		c->x = fractal->julia_x;
+		c->y = fractal->julia_y;
+	}
+	else
+	{
+		c->x = z->x;
+		c->y = z->y;
+	}
+}
+
 static void	handle_pixel(int x, int y, t_fractal *fractal)
 {
 	t_complex	z;
@@ -27,17 +41,16 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 	int			i;
 	int			color;
 
-	z.x = 0.0;
-	z.y = 0.0;
-	c.x = (scale(x, -2, +2) * fractal->zoom) + fractal->shift_x;
-	c.y = (scale(y, +2, -2) * fractal->zoom) + fractal->shift_y;
+	z.x = (scale(x, -2, +2) * fractal->zoom) + fractal->shift_x;
+	z.y = (scale(y, +2, -2) * fractal->zoom) + fractal->shift_y;
+	toggle_fractal(&z, &c, fractal);
 	i = 0;
 	while (i < fractal->max_iter)
 	{
 		z = sum_complex(square_complex(z), c);
 		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_val)
 		{
-			color = compute_color(i, BLACK, WHITE, fractal->max_iter);
+			color = compute_color(i, ELECTRIC_BLUE, YELLOW, fractal->max_iter);
 			my_pixel_put(x, y, &fractal->img, color);
 			return ;
 		}
