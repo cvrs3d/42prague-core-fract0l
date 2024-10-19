@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:03:57 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 14:22:10 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 15:28:04 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,22 @@
 # ifndef ERROR_MASSAGE
 #  define ERROR_MASSAGE "./fractol mandelbrot\n\t./fractol julia <real> <imag>"
 # endif
+
+typedef struct s_complex
+{
+	double	x;
+	double	y;
+}				t_complex;
+
 /*
 * Image structure
+* This structure holds, all the data
+* from the mlx_new_image function
+* and the mlx_get_data_addr function
+* 1. img_pointer - pointer to the image
+* 2. pixels_pointer - pointer to some pixel of the image
+* 3. bpp - number of bits per pixel
+* 4. endian - endianess of the image
 */
 typedef struct s_image
 {
@@ -34,6 +48,13 @@ typedef struct s_image
 }				t_img;
 /*
 * Fractal structure
+* This structure holds, all the data
+* from the mlx_init, mlx_new_window, mlx_new_image
+* and mlx_get_data_addr functions
+* 1. name - name of the fractal
+* 2. mlx_connection - pointer to the connection to the X server
+* 3. mlx_window - pointer to the window
+* 4. img - structure that holds the image data
 */
 typedef struct s_fractal
 {

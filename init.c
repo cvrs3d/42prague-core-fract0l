@@ -6,18 +6,29 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:52:08 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 14:21:23 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 14:29:55 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/*
+ * Function that handles the malloc problems
+ * and exits the program
+*/
 static void	graceful_backoff(void)
 {
 	perror("Malloc problems");
 	exit(EXIT_FAILURE);
 }
 
+/*
+ * Function that initializes the fractal structure
+ * 1. Initializes the connection to the X server
+ * 2. Creates a window
+ * 3. Creates an image
+ * 4. Gets the image data
+*/
 void	fractal_init(t_fractal *fractal)
 {
 	fractal->mlx_connection = mlx_init();
