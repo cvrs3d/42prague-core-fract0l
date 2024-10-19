@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:52:08 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 16:28:22 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 17:57:49 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,22 @@ static void	graceful_backoff(void)
 	exit(EXIT_FAILURE);
 }
 
-void	data_init(t_fractal *fractal)
+static void	data_init(t_fractal *fractal)
 {
 	fractal->escape_val = 4;
 	fractal->max_iter = 42;
+	fractal->shift_x = 0.0;
+	fractal->shift_y = 0.0;
+}
+
+static void	events_init(t_fractal *fractal)
+{
+	mlx_hook(fractal->mlx_window, KeyPress,
+		KeyPressMask, key_handler, fractal);
+	mlx_hook(fractal->mlx_window, ButtonPress,
+		ButtonPressMask, mouse_handler, fractal);
+	mlx_hook(fractal->mlx_window, DestroyNotify,
+		StructureNotifyMask, notify_handler, fractal);
 }
 
 /*
@@ -60,4 +72,5 @@ void	fractal_init(t_fractal *fractal)
 	fractal->img.pixels_pointer = mlx_get_data_addr(fractal->img.img_pointer,
 			&fractal->img.bpp, &fractal->img.line_len, &fractal->img.endian);
 	data_init(fractal);
+	events_init(fractal);
 }

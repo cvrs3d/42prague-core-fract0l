@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:24:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 17:28:31 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 17:58:54 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	my_pixel_put(int x, int y, t_img *img, int color)
 	*(unsigned int *)(img->pixels_pointer + offset) = color;
 }
 
-void	handle_pixel(int x, int y, t_fractal *fractal)
+static void	handle_pixel(int x, int y, t_fractal *fractal)
 {
 	t_complex	z;
 	t_complex	c;
@@ -29,8 +29,8 @@ void	handle_pixel(int x, int y, t_fractal *fractal)
 
 	z.x = 0.0;
 	z.y = 0.0;
-	c.x = scale(x, -2, +2);
-	c.y = scale(y, +2, -2);
+	c.x = scale(x, -2, +2) + fractal->shift_x;
+	c.y = scale(y, +2, -2) + fractal->shift_y;
 	i = 0;
 	while (i < fractal->max_iter)
 	{
@@ -42,7 +42,7 @@ void	handle_pixel(int x, int y, t_fractal *fractal)
 			return ;
 		}
 		++i;
-		my_pixel_put(x, y, &fractal->img, AQUA_DREAM);
+		my_pixel_put(x, y, &fractal->img, WHITE);
 	}
 }
 
@@ -70,4 +70,6 @@ void	fractal_render(t_fractal *fractal)
 			handle_pixel(x, y, fractal);
 		}
 	}
+	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,
+		fractal->img.img_pointer, 0, 0);
 }

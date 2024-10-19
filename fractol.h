@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:03:57 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 16:57:56 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 18:06:34 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <math.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "minilibx-linux/mlx.h"
 # include <unistd.h>
 # ifndef ERROR_MASSAGE
@@ -64,6 +66,8 @@ typedef struct s_fractal
 	t_img	img;
 	double	escape_val;
 	int		max_iter;
+	double	shift_x;
+	double	shift_y;
 }				t_fractal;
 
 # define WIDTH 800
@@ -85,8 +89,12 @@ typedef struct s_fractal
 int			ft_strncmp(char *s1, char *s2, int n);
 void		putstr_fd(char *s, int fd);
 void		fractal_init(t_fractal *fractal);
+void		fractal_render(t_fractal *fractal);
 double		scale(double unscaled_num, double new_min, double new_max);
 t_complex	square_complex(t_complex z);
 t_complex	sum_complex(t_complex z1, t_complex z2);
+int			compute_color(int unscaled_num, int new_min, int new_max, int max_i);
+void		close_handler(t_fractal *fractal);
+int			key_handler(int keysym, t_fractal *fractal);
 
 #endif
