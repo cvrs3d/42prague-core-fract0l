@@ -46,6 +46,9 @@ To generate a Julia set image, run the following command:
 For better understanding here are the useful links:
 
 minilibX API - [Documentation](https://harm-smits.github.io/42docs/libs/minilibx)
+
 Julia Set - [Wiki](https://en.wikipedia.org/wiki/Julia_set)
+
 Mandelbrot Set - [Wiki](https://en.wikipedia.org/wiki/Mandelbrot_set)
+
 Numberphile channel - [Mandelbrot Playlist Youtube](https://www.youtube.com/watch?v=FFftmWSzgmk&list=PLt5AfwLFPxWL7NpD_DKO28XhS0Ugctkpu&ab_channel=Numberphile)
