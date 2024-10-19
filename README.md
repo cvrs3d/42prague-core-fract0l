@@ -17,7 +17,7 @@ To get started with the Mandelbrot Set Visualization project, follow these steps
 
 1. Clone the repository:
 	```bash
-	git clone https://github.com/yourusername/mandelbrot.git
+	git clone https://github.com/cvrs3d/42prague-core-fract0l.git
 	```
 2. Navigate to the project directory:
 	```bash
