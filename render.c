@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:24:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 17:58:54 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 18:35:34 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 
 	z.x = 0.0;
 	z.y = 0.0;
-	c.x = scale(x, -2, +2) + fractal->shift_x;
-	c.y = scale(y, +2, -2) + fractal->shift_y;
+	c.x = (scale(x, -2, +2) * fractal->zoom) + fractal->shift_x;
+	c.y = (scale(y, +2, -2) * fractal->zoom) + fractal->shift_y;
 	i = 0;
 	while (i < fractal->max_iter)
 	{

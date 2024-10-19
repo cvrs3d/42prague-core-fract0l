@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:03:57 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 18:06:34 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 18:32:48 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_fractal
 	int		max_iter;
 	double	shift_x;
 	double	shift_y;
+	double	zoom;
 }				t_fractal;
 
 # define WIDTH 800
@@ -94,7 +95,8 @@ double		scale(double unscaled_num, double new_min, double new_max);
 t_complex	square_complex(t_complex z);
 t_complex	sum_complex(t_complex z1, t_complex z2);
 int			compute_color(int unscaled_num, int new_min, int new_max, int max_i);
-void		close_handler(t_fractal *fractal);
+int			close_handler(t_fractal *fractal);
 int			key_handler(int keysym, t_fractal *fractal);
+int			mouse_handler(int button, int x, int y, t_fractal *fractal);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:12:25 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 13:18:46 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/19 19:07:07 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,47 @@ void	putstr_fd(char *s, int fd)
 		write(fd, s, 1);
 		putstr_fd(s + 1, fd);
 	}
+}
+
+int	chsign(char **c)
+{
+	if (**c == '-')
+	{
+		(*c)++;
+		return (-1);
+	}
+	else if (**c == '+')
+	{
+		(*c)++;
+		return (1);
+	}
+	(*c)++;
+	return (1);
+}
+
+double	atodbl(char *s)
+{
+	long	ipart;
+	double	fract;
+	double	pow;
+	int		sign;
+
+	ipart = 0;
+	fract = 0;
+	sign = +1;
+	pow = 1;
+	while ((*s >= 9 && *s <= 13) || 32 == *s)
+		++s;
+	while ('+' == *s || '-' == *s)
+		sign = chsign(&s);
+	while (*s != '.' && *s)
+		ipart = (ipart * 10) + (*s++ - 48);
+	if (*s == '.')
+		++s;
+	while (*s)
+	{
+		pow /= 10;
+		fract = fract + (*s++ - 48) * pow;
+	}
+	return ((ipart + fract) * sign);
 }
