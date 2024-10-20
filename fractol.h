@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:03:57 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 19:38:31 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/20 14:52:10 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <X11/keysym.h>
 # include "minilibx-linux/mlx.h"
 # include <unistd.h>
+# include <sys/wait.h>
 # ifndef ERROR_MASSAGE
 #  define ERROR_MASSAGE "./fractol mandelbrot\n\t./fractol julia <real> <imag>"
 # endif
@@ -83,12 +84,13 @@ typedef struct s_fractal
 # define MAGENTA_BURST 0xFF00FF  // A vibrant magenta
 # define LIME_SHOCK 0xCCFF00  // A blinding lime
 # define NEON_ORANGE 0xFF6600  // A blazing neon orange
-# define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
+# define P_P 0x660066  // A deep purple
 # define AQUA_DREAM 0x33CCCC  // A bright turquoise
 # define HOT_PINK 0xFF66B2  // As the name suggests!
 # define E_B 0x0066FF  // A radiant blue
 # define L_R 0xFF3300  // A bright, molten red
 # define YELLOW 0xFFFF00  // RGB(255, 255, 0)
+# define NM_PROC 10
 
 int			ft_strncmp(char *s1, char *s2, int n);
 void		putstr_fd(char *s, int fd);

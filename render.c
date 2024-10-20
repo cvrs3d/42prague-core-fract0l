@@ -6,21 +6,21 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:24:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 19:46:08 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/20 14:53:51 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	my_pixel_put(int x, int y, t_img *img, int color)
+static void my_pixel_put(int x, int y, t_img *img, int color)
 {
-	int	offset;
+	int offset;
 
 	offset = (y * img->line_len) + (x * (img->bpp / 8));
 	*(unsigned int *)(img->pixels_pointer + offset) = color;
 }
 
-static void	toggle_fractal(t_complex *z, t_complex *c, t_fractal *fractal)
+static void toggle_fractal(t_complex *z, t_complex *c, t_fractal *fractal)
 {
 	if (ft_strncmp(fractal->name, "julia", 5) == 0)
 	{
@@ -34,12 +34,12 @@ static void	toggle_fractal(t_complex *z, t_complex *c, t_fractal *fractal)
 	}
 }
 
-static void	handle_pixel(int x, int y, t_fractal *fractal)
+static void handle_pixel(int x, int y, t_fractal *fractal)
 {
-	t_complex	z;
-	t_complex	c;
-	int			i;
-	int			color;
+	t_complex z;
+	t_complex c;
+	int i;
+	int color;
 
 	z.x = (scale(x, -2, +2) * fractal->zoom) + fractal->shift_x;
 	z.y = (scale(y, +2, -2) * fractal->zoom) + fractal->shift_y;
@@ -50,12 +50,12 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 		z = sum_complex(square_complex(z), c);
 		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_val)
 		{
-			color = compute_color(i, E_B, L_R, fractal->max_iter);
+			color = compute_color(i, BLUE, NEON_ORANGE, fractal->max_iter);
 			my_pixel_put(x, y, &fractal->img, color);
-			return ;
+			return;
 		}
 		++i;
-		my_pixel_put(x, y, &fractal->img, WHITE);
+		my_pixel_put(x, y, &fractal->img, BLACK);
 	}
 }
 
@@ -86,6 +86,3 @@ void	fractal_render(t_fractal *fractal)
 	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,
 		fractal->img.img_pointer, 0, 0);
 }
-
-//TODO:
-// Separate the rendering for mandelbrot and julia
