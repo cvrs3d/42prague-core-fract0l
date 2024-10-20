@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 12:52:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 19:45:59 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/20 15:04:16 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	main(int acount, char **avalues)
 {
 	t_fractal	fract;
 
-	if (2 == acount && !ft_strncmp(avalues[1], "mandelbrot", 10)
-		|| 4 == acount && !ft_strncmp(avalues[1], "julia", 5))
+	if ((2 == acount && !ft_strncmp(avalues[1], "mandelbrot", 10))
+		|| (4 == acount && !ft_strncmp(avalues[1], "julia", 5)))
 	{
 		fract.name = avalues[1];
 		if (!ft_strncmp(avalues[1], "julia", 5))

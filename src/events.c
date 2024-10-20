@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:45:28 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 19:38:09 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/20 15:18:55 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ int	key_handler(int keysym, t_fractal *fractal)
 */
 int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 {
+	int	tmp;
+
+	tmp = x + y;
 	if (button == Button5)
 	{
 		fractal->zoom *= 0.95;
@@ -64,7 +67,8 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 		fractal->zoom *= 1.05;
 	}
 	fractal_render(fractal);
-	return (0);
+	tmp = 0;
+	return (tmp);
 }
 
 /*
