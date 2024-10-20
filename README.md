@@ -29,17 +29,35 @@ To get started with the Mandelbrot Set Visualization project, follow these steps
 	```
 
 ## Usage
+To choose between a multiprocessing version (faster) or a normal version (slower), make sure to build the bonus part first by running `make bonus`.
+
+The program will automatically use the appropriate mode based on the build.
+
+!!! WARNING !!!
+BE ADVISED THAT MULTIPROCESSING MODE REQUIRES 4 CORES!!!
+If your computer has fewer CPU cores than specified in your program, the operating system will still manage to run the processes, but it may lead to suboptimal performance. Here's what typically happens:
+
+1. **Context Switching**: The operating system will perform context switching, where it rapidly switches between processes to give the illusion that they are running simultaneously. This can lead to increased overhead and reduced performance due to the time spent switching contexts.
+
+2. **Increased Load**: The CPU will be under increased load, which can lead to higher temperatures and potentially thermal throttling, where the CPU reduces its speed to prevent overheating.
+
+3. **Longer Execution Time**: The overall execution time of your program may increase because the CPU has to divide its time among more processes than it has cores.
+
+4. **Resource Contention**: Other applications running on your system may experience slower performance because the CPU is heavily utilized by your program.
+
 
 To generate a Mandelbrot set image, run the following command:
 
 ```bash
-	./a.out mandelbrot
+./fractol mandelbrot
 ```
+
 To generate a Julia set image, run the following command:
 
 ```bash
-	./a.out julia <real part\> <imaginary without i\>
+./fractol julia <real part> <imaginary without i>
 ```
+
 
 ## Resources
 

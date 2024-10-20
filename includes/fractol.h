@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:03:57 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/20 16:29:30 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/20 17:02:47 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct s_fractal
 # define E_B 0x0066FF  // A radiant blue
 # define L_R 0xFF3300  // A bright, molten red
 # define YELLOW 0xFFFF00  // RGB(255, 255, 0)
-# define NM_PROC 10
+# define NM_PROC 4
 
 int			ft_strncmp(char *s1, char *s2, int n);
 void		putstr_fd(char *s, int fd);
