@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 12:52:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/21 15:11:23 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:17:51 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ static void	start_julia(t_fractal *fract, char **avalues)
 	mlx_loop(fract->mlx);
 }
 
-static void	start_burningship(t_fractal *fract, char **avalues)
+static void	start_cubic(t_fractal *fract, char **avalues)
 {
 	fract->name = avalues[1];
-	printf("name: %s\nfractal_name: %s\n", avalues[1], fract->name);
-	perror("burningship is not implemented yet");
-	exit(EXIT_FAILURE);
+	fractal_init(fract);
+	fractal_render(fract);
+	mlx_loop(fract->mlx);
 }
 
 int	main(int acount, char **avalues)
@@ -55,9 +55,9 @@ int	main(int acount, char **avalues)
 	{
 		start_julia(&fract, avalues);
 	}
-	else if (2 == acount && !ft_strncmp(avalues[1], "burningship", 11))
+	else if (2 == acount && !ft_strncmp(avalues[1], "cubic", 5))
 	{
-		start_burningship(&fract, avalues);
+		start_cubic(&fract, avalues);
 	}
 	else
 	{

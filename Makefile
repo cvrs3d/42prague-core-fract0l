@@ -6,7 +6,7 @@
 #    By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/20 14:51:02 by yustinov          #+#    #+#              #
-#    Updated: 2024/10/21 14:10:22 by yustinov         ###   ########.fr        #
+#    Updated: 2024/10/21 16:10:07 by yustinov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC			=	main.c  \
 				string_utils.c  \
 				math_utils.c  \
 				singleprocessing.c  \
+				mandelcube.c  \
 				julia.c  \
 				mandelbrot.c  \
 
@@ -50,6 +51,7 @@ BONUS_SRC =	main.c  \
 				proc_utils.c  \
 				color.c  \
 				string_utils.c  \
+				mandelcube.c  \
 				render.c  \
 				math_utils.c  \
 				julia.c  \

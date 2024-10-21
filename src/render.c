@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:24:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/21 14:08:46 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:18:07 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ void	handle_pixel(int x, int y, t_fractal *fractal)
 		handle_pixel_mandelbrot(x, y, fractal);
 	else if (ft_strncmp(fractal->name, "julia", 5) == 0)
 		handle_pixel_julia(x, y, fractal);
-	else if (ft_strncmp(fractal->name, "burningship", 11) == 0)
+	else if (ft_strncmp(fractal->name, "cubic", 5) == 0)
 	{
-		perror("burningship is not implemented yet");
-		exit(EXIT_FAILURE);
+		handle_pixel_cubic(x, y, fractal);
 	}
 	else
 	{

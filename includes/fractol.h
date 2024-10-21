@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:03:57 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/21 15:10:59 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:19:44 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,8 @@ typedef struct s_thread
 # define NM_PROC 4
 # define ERROR_MASSAGE "Usage:  ./fractol mandelbrot\n \
 	./fractol julia <real> <imaginary>\n \
-	./fractol burningship\n \
-	<real> and <imaginary> are floating point numbers\n \
-	-m and -s are optional flags\n \
-	-m multiprocessing mode -s standart mode(slow)\n"
+	./fractol cubic\n \
+	<real> and <imaginary> are floating point numbers\n "
 
 int			ft_strncmp(char *s1, char *s2, int n);
 int			is_garbage(char *s);
@@ -118,6 +116,8 @@ void		handle_pixel_mandelbrot(int x, int y, t_fractal *fractal);
 void		toggle_fractal(t_complex *z, t_complex *c, t_fractal *fractal);
 void		wait_for_children(pid_t *pids);
 double		scale(double unscaled_num, double new_min, double new_max);
+void		handle_pixel_burningship(int x, int y, t_fractal *fractal);
+t_complex	cube_complex(t_complex z);
 double		atodbl(char *s);
 t_complex	square_complex(t_complex z);
 t_complex	sum_complex(t_complex z1, t_complex z2);

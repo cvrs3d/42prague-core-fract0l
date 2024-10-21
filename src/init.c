@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:52:08 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/21 15:11:23 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:18:32 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static void	events_init(t_fractal *fractal)
 		ButtonPressMask, mouse_handler, fractal);
 	mlx_hook(fractal->mlx_window, DestroyNotify,
 		StructureNotifyMask, close_handler, fractal);
-	mlx_hook(fractal->mlx_window, MotionNotify,
-		PointerMotionMask, mouse_track, fractal);
 }
 
 /*
