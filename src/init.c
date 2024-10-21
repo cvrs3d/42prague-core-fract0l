@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:52:08 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 19:32:13 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:11:23 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,24 @@ static void	events_init(t_fractal *fractal)
 */
 void	fractal_init(t_fractal *fractal)
 {
-	fractal->mlx_connection = mlx_init();
-	if (NULL == fractal->mlx_connection)
+	fractal->mlx = mlx_init();
+	if (NULL == fractal->mlx)
 		graceful_backoff();
-	fractal->mlx_window = mlx_new_window(fractal->mlx_connection,
+	fractal->mlx_window = mlx_new_window(fractal->mlx,
 			WIDTH, HEIGHT, fractal->name);
 	if (NULL == fractal->mlx_window)
 	{
-		mlx_destroy_display(fractal->mlx_connection);
-		free(fractal->mlx_connection);
+		mlx_destroy_display(fractal->mlx);
+		free(fractal->mlx);
 		graceful_backoff();
 	}
-	fractal->img.img_pointer = mlx_new_image(fractal->mlx_connection,
+	fractal->img.img_pointer = mlx_new_image(fractal->mlx,
 			WIDTH, HEIGHT);
 	if (NULL == fractal->img.img_pointer)
 	{
-		mlx_destroy_window(fractal->mlx_connection, fractal->mlx_window);
-		mlx_destroy_display(fractal->mlx_connection);
-		free(fractal->mlx_connection);
+		mlx_destroy_window(fractal->mlx, fractal->mlx_window);
+		mlx_destroy_display(fractal->mlx);
+		free(fractal->mlx);
 		graceful_backoff();
 	}
 	fractal->img.pixels_pointer = mlx_get_data_addr(fractal->img.img_pointer,

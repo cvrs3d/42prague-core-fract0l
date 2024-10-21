@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 17:45:28 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/20 15:18:55 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:12:34 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 */
 int	close_handler(t_fractal *fractal)
 {
-	mlx_destroy_image(fractal->mlx_connection, fractal->img.img_pointer);
-	mlx_destroy_window(fractal->mlx_connection, fractal->mlx_window);
-	mlx_destroy_display(fractal->mlx_connection);
-	free(fractal->mlx_connection);
+	mlx_destroy_image(fractal->mlx, fractal->img.img_pointer);
+	mlx_destroy_window(fractal->mlx, fractal->mlx_window);
+	mlx_destroy_display(fractal->mlx);
+	free(fractal->mlx);
 	exit(EXIT_SUCCESS);
 }
 
@@ -77,13 +77,15 @@ int	mouse_handler(int button, int x, int y, t_fractal *fractal)
 */
 int	mouse_track(int x, int y, t_fractal *fractal)
 {
-	if (ft_strncmp(fractal->name, "julia", 5) == 0)
+	static int	prev_x = -1;
+	static int	prev_y = -1;
+
+	if (prev_x != -1 && prev_y != -1)
 	{
-		fractal->julia_x = scale(x, -2, +2) * fractal->zoom
-			+ fractal->shift_x;
-		fractal->julia_y = scale(y, +2, -2) * fractal->zoom
-			+ fractal->shift_y;
-		fractal_render(fractal);
+		fractal->shift_x += (x - prev_x) * fractal->zoom * 0.001;
+		fractal->shift_y -= (y - prev_y) * fractal->zoom * 0.001;
 	}
+	prev_x = x;
+	prev_y = y;
 	return (0);
 }

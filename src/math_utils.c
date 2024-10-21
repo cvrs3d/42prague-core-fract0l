@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:52:24 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 18:54:47 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/21 13:41:52 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,23 @@ t_complex	square_complex(t_complex z)
 
 	result.x = (z.x * z.x) - (z.y * z.y);
 	result.y = 2 * z.x * z.y;
+	return (result);
+}
+
+/*
+* Cube the complex number
+* using the formula (a + bi)^3 = a^3 - 3ab^2 + 3a^2b - b^3
+* where a is the real part and b is the imaginary part
+* resulting in a new complex number
+* i is omitted in the formula
+* Using for the (p) = z^3 - 1 fractal
+*/
+t_complex	cube_complex(t_complex z)
+{
+	t_complex	result;
+
+	result.x = (z.x * z.x * z.x) - (3 * (z.x * (z.y * z.y)));
+	result.y = (3 * (z.y * (z.x * z.x))) - (z.y * z.y * z.y);
 	return (result);
 }
 /*

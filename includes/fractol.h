@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:03:57 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/20 17:02:47 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/21 15:10:59 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@
 # include "mlx.h"
 # include <unistd.h>
 # include <sys/wait.h>
-# ifndef ERROR_MASSAGE
-#  define ERROR_MASSAGE "./fractol mandelbrot\n\t./fractol julia <real> <imag>"
-# endif
 
 typedef struct s_complex
 {
@@ -62,7 +59,7 @@ typedef struct s_image
 typedef struct s_fractal
 {
 	char	*name;
-	void	*mlx_connection;
+	void	*mlx;
 	void	*mlx_window;
 	t_img	img;
 	double	escape_val;
@@ -73,6 +70,17 @@ typedef struct s_fractal
 	double	julia_x;
 	double	julia_y;
 }				t_fractal;
+
+typedef struct s_thread
+{
+	int	start_x;
+	int	end_x;
+	int	start_y;
+	int	end_y;
+	int	chunk_size_x;
+	int	chunk_size_y;
+	int	num_processes;
+}				t_thread;
 
 # define WIDTH 800
 # define HEIGHT 800
@@ -91,11 +99,24 @@ typedef struct s_fractal
 # define L_R 0xFF3300  // A bright, molten red
 # define YELLOW 0xFFFF00  // RGB(255, 255, 0)
 # define NM_PROC 4
+# define ERROR_MASSAGE "Usage:  ./fractol mandelbrot\n \
+	./fractol julia <real> <imaginary>\n \
+	./fractol burningship\n \
+	<real> and <imaginary> are floating point numbers\n \
+	-m and -s are optional flags\n \
+	-m multiprocessing mode -s standart mode(slow)\n"
 
 int			ft_strncmp(char *s1, char *s2, int n);
+int			is_garbage(char *s);
 void		putstr_fd(char *s, int fd);
 void		fractal_init(t_fractal *fractal);
 void		fractal_render(t_fractal *fractal);
+void		handle_pixel(int x, int y, t_fractal *fractal);
+void		my_pixel_put(int x, int y, t_img *img, int color);
+void		handle_pixel_julia(int x, int y, t_fractal *fractal);
+void		handle_pixel_mandelbrot(int x, int y, t_fractal *fractal);
+void		toggle_fractal(t_complex *z, t_complex *c, t_fractal *fractal);
+void		wait_for_children(pid_t *pids);
 double		scale(double unscaled_num, double new_min, double new_max);
 double		atodbl(char *s);
 t_complex	square_complex(t_complex z);

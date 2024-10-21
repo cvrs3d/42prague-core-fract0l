@@ -6,13 +6,13 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 14:24:35 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/20 18:56:39 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/21 14:08:46 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	my_pixel_put(int x, int y, t_img *img, int color)
+void	my_pixel_put(int x, int y, t_img *img, int color)
 {
 	int	offset;
 
@@ -20,7 +20,7 @@ static void	my_pixel_put(int x, int y, t_img *img, int color)
 	*(unsigned int *)(img->pixels_pointer + offset) = color;
 }
 
-static void	toggle_fractal(t_complex *z, t_complex *c, t_fractal *fractal)
+void	toggle_fractal(t_complex *z, t_complex *c, t_fractal *fractal)
 {
 	if (ft_strncmp(fractal->name, "julia", 5) == 0)
 	{
@@ -34,55 +34,20 @@ static void	toggle_fractal(t_complex *z, t_complex *c, t_fractal *fractal)
 	}
 }
 
-static void	handle_pixel(int x, int y, t_fractal *fractal)
+void	handle_pixel(int x, int y, t_fractal *fractal)
 {
-	t_complex	z;
-	t_complex	c;
-	int			i;
-	int			color;
-
-	z.x = (scale(x, -2, +2) * fractal->zoom) + fractal->shift_x;
-	z.y = (scale(y, +2, -2) * fractal->zoom) + fractal->shift_y;
-	toggle_fractal(&z, &c, fractal);
-	i = 0;
-	while (i < fractal->max_iter)
+	if (ft_strncmp(fractal->name, "mandelbrot", 10) == 0)
+		handle_pixel_mandelbrot(x, y, fractal);
+	else if (ft_strncmp(fractal->name, "julia", 5) == 0)
+		handle_pixel_julia(x, y, fractal);
+	else if (ft_strncmp(fractal->name, "burningship", 11) == 0)
 	{
-		z = sum_complex(square_complex(z), c);
-		if ((z.x * z.x) + (z.y * z.y) > fractal->escape_val)
-		{
-			color = compute_color(i, BLUE, NEON_ORANGE, fractal->max_iter);
-			my_pixel_put(x, y, &fractal->img, color);
-			return ;
-		}
-		++i;
-		my_pixel_put(x, y, &fractal->img, BLACK);
+		perror("burningship is not implemented yet");
+		exit(EXIT_FAILURE);
 	}
-}
-
-/*
- * This function renders the fractal
-
- *    0_____________800x
- *    |_|_|_|_|_|_|_|
- *    |_|_|_|_|_|_|_|
- *    |_____________|800 y
- * 	  |_____________|
- *    |_____________|
-*/
-void	fractal_render(t_fractal *fractal)
-{
-	int	x;
-	int	y;
-
-	y = -1;
-	while (++y < HEIGHT)
+	else
 	{
-		x = -1;
-		while (++x < WIDTH)
-		{
-			handle_pixel(x, y, fractal);
-		}
+		putstr_fd(ERROR_MASSAGE, STDERR_FILENO);
+		exit(EXIT_FAILURE);
 	}
-	mlx_put_image_to_window(fractal->mlx_connection, fractal->mlx_window,
-		fractal->img.img_pointer, 0, 0);
 }

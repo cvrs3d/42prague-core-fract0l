@@ -6,7 +6,7 @@
 #    By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/20 14:51:02 by yustinov          #+#    #+#              #
-#    Updated: 2024/10/20 16:52:54 by yustinov         ###   ########.fr        #
+#    Updated: 2024/10/21 14:10:22 by yustinov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,9 @@ SRC			=	main.c  \
 				color.c  \
 				string_utils.c  \
 				math_utils.c  \
+				singleprocessing.c  \
+				julia.c  \
+				mandelbrot.c  \
 
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 
@@ -44,9 +47,13 @@ BONUS_SRC =	main.c  \
 				init.c  \
 				events.c  \
 				multiprocessing.c  \
+				proc_utils.c  \
 				color.c  \
 				string_utils.c  \
+				render.c  \
 				math_utils.c  \
+				julia.c  \
+				mandelbrot.c  \
 
 BSRCS = $(addprefix $(SRC_PATH), $(BONUS_SRC))
 
@@ -99,9 +106,9 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(BOBJS) $(MLX)
+multi: $(BOBJS) $(MLX)
 	@echo "Compiling multiprocesed fractol..."
 	@$(CC) $(CFLAGS) -o $(NAME) $(BOBJS) $(MLX) $(INC) -lXext -lX11 -lm
 	@echo "Fractol ready."
 
-.PHONY: all re clean fclean bonus
+.PHONY: all re clean fclean multi

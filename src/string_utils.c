@@ -6,7 +6,7 @@
 /*   By: yustinov <yustinov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 13:12:25 by yustinov          #+#    #+#             */
-/*   Updated: 2024/10/19 19:11:37 by yustinov         ###   ########.fr       */
+/*   Updated: 2024/10/21 13:24:20 by yustinov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,23 @@ double	atodbl(char *s)
 		fract = fract + (*s++ - 48) * pow;
 	}
 	return ((ipart + fract) * sign);
+}
+
+/*
+ * Program needs to check if imaginary
+ * and real parts of the complex number
+ * contains at least 1 digit so atodb 
+ * function can convert it to double
+*/
+int	is_garbage(char *s)
+{
+	if (NULL == s)
+		return (1);
+	while (*s)
+	{
+		if (*s >= '0' || *s <= '9')
+			return (0);
+		++s;
+	}
+	return (1);
 }
